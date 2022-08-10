@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hmp_new/main.dart';
 
 class Splash extends StatefulWidget {
@@ -34,7 +35,7 @@ class _SplashState extends State<Splash> {
                   Color(0xFFEDC152)
                 ])),
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.only(top: 78.h,bottom: 78.h,left: 78.w,right: 78.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
