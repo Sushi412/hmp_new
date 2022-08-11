@@ -41,7 +41,7 @@ late WebViewController controller;
       body: SafeArea(
         child: WebView(
           javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: 'https://heathmatthewsphysio.in/',
+          initialUrl: 'https://heathmatthewsphysio.in/users/sign_in',
           onWebViewCreated: (controller)
           {
             this.controller = controller;
