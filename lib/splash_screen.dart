@@ -17,6 +17,7 @@ class _SplashState extends State<Splash> {
 
   _navigateTologin() async {
     await Future.delayed(Duration(milliseconds: 1500), () {});
+    Navigator.pop(context);
     Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
   }
 

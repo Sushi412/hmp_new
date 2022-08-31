@@ -1,42 +1,56 @@
+// import 'dart:io';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import 'package:hmp_new/splash_screen.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+// import 'dart:async';
 
-void main()
-{runApp(const MyApp());}
+void main() {
+  runApp(MyApp());
+}
+
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner:false,
       home: Splash(),
-    );
+      );
   }
 }
+
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  MyHomePage({Key? key, }) : super(key: key);
+
+
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-late WebViewController controller;
+  late WebViewController controller;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: WebView(
-          javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: 'https://heathmatthewsphysio.in/',
-          onWebViewCreated: (controller)
-          {
-            this.controller = controller;
-          },
-          onPageStarted: (url)
-          {
-            print('New Website: $url');
-          },
+    return WillPopScope(
+      onWillPop: ()async {
+        if (await controller.canGoBack()){
+          controller.goBack();
+          return false;
+        }
+        else {
+          return true;
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: WebView(
+            initialUrl: 'https://heathmatthewsphysio.in/users/sign_in',
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController c) {
+              this.controller=c;
+            },
+          ),
         ),
       ),
     );
